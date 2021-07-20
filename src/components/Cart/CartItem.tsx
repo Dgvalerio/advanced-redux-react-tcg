@@ -1,7 +1,10 @@
+import React from 'react';
+
+import { ICartItem } from '../../interfaces';
 import classes from './CartItem.module.css';
 
-const CartItem = (props) => {
-  const { title, quantity, total, price } = props.item;
+const CartItem = ({ item }: { item: ICartItem }) => {
+  const { title, quantity, total, price } = item;
 
   return (
     <li className={classes.item}>
@@ -17,8 +20,8 @@ const CartItem = (props) => {
           x <span>{quantity}</span>
         </div>
         <div className={classes.actions}>
-          <button>-</button>
-          <button>+</button>
+          <button type="button">-</button>
+          <button type="button">+</button>
         </div>
       </div>
     </li>
