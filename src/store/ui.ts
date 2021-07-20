@@ -1,8 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = { cartVisible: false };
+import { INotification } from '../interfaces';
 
-export type IUIState = { cartVisible: boolean };
+const initialState = { cartVisible: false, notification: null };
+
+export type IUIState = {
+  cartVisible: boolean;
+  notification: INotification | null;
+};
 
 const uiSlice = createSlice({
   name: 'ui',
@@ -10,6 +15,9 @@ const uiSlice = createSlice({
   reducers: {
     toggleCartVisible(state: IUIState) {
       state.cartVisible = !state.cartVisible;
+    },
+    showNotification(state: IUIState, action: PayloadAction<INotification>) {
+      state.notification = action.payload;
     },
   },
 });
