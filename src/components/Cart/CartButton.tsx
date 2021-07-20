@@ -2,13 +2,13 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { IStore } from '../../store';
-import { cartActions } from '../../store/cart';
+import { uiActions } from '../../store/ui';
 import classes from './CartButton.module.css';
 
 const CartButton = () => {
   const dispatch = useDispatch();
 
-  const handleToggleCart = () => dispatch(cartActions.toggleCart());
+  const handleToggleCart = () => dispatch(uiActions.toggleCartVisible());
 
   // Se for por tipo de item
   // const { length: quantity } = useSelector((state: IStore) => state.cart.items);

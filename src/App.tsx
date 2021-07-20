@@ -7,7 +7,7 @@ import Products from './components/Shop/Products';
 import { IStore } from './store';
 
 const App = () => {
-  const { visible: showCart } = useSelector((state: IStore) => state.cart);
+  const { cartVisible: showCart } = useSelector((state: IStore) => state.ui);
 
   return (
     <Layout>

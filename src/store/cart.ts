@@ -2,17 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { ICartItem, IItem } from '../interfaces';
 
-const initialState = { visible: false, items: [] };
+const initialState = { items: [] };
 
-export type ICartState = { visible: boolean; items: ICartItem[] };
+export type ICartState = { items: ICartItem[] };
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    toggleCart(state: ICartState) {
-      state.visible = !state.visible;
-    },
     addToCart(state: ICartState, action: PayloadAction<IItem>) {
       const itemInCart = state.items.find(
         (item) => item.title === action.payload.title
