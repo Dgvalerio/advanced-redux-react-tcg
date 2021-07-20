@@ -1,15 +1,34 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = { visible: false };
+import { ICartItem, IItem } from '../interfaces';
 
-export type ICartState = typeof initialState;
+const initialState = { visible: false, items: [] };
+
+export type ICartState = { visible: boolean; items: ICartItem[] };
 
 const cartSlice = createSlice({
   name: 'cart',
-  initialState: { visible: false },
+  initialState,
   reducers: {
     toggleCart(state: ICartState) {
       state.visible = !state.visible;
+    },
+    addToCart(state: ICartState, action: PayloadAction<IItem>) {
+      const itemInCart = state.items.find(
+        (item) => item.title === action.payload.title
+      );
+
+      if (itemInCart) {
+        const indexOfItem = state.items.indexOf(itemInCart);
+        state.items[indexOfItem].quantity += 1;
+        state.items[indexOfItem].total += itemInCart.price;
+      } else {
+        state.items.push({
+          ...action.payload,
+          quantity: 1,
+          total: action.payload.price,
+        });
+      }
     },
   },
 });

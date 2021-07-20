@@ -1,5 +1,3 @@
-import { ICartState } from '../store/cart';
-
 export interface ICartItem {
   title: string;
   quantity: number;
@@ -7,6 +5,8 @@ export interface ICartItem {
   price: number;
 }
 
-export interface IStore {
-  cart: ICartState;
+export interface IItem {
+  title: string;
+  description: string;
+  price: number;
 }

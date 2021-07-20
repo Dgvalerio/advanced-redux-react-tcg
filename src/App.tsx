@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import Cart from './components/Cart/Cart';
 import Layout from './components/Layout/Layout';
 import Products from './components/Shop/Products';
-import { IStore } from './interfaces';
+import { IStore } from './store';
 
 const App = () => {
   const { visible: showCart } = useSelector((state: IStore) => state.cart);
