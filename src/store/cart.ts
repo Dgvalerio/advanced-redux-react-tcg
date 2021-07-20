@@ -2,9 +2,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { ICartItem, IItem } from '../interfaces';
 
-const initialState = { items: [], totalQuantity: 0 };
+const initialState = { items: [], totalQuantity: 0, changed: false };
 
-export type ICartState = { items: ICartItem[]; totalQuantity: number };
+export type ICartState = {
+  items: ICartItem[];
+  totalQuantity: number;
+  changed: boolean;
+};
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -18,6 +22,9 @@ const cartSlice = createSlice({
       const itemInCart = state.items.find(
         (item) => item.title === action.payload.title
       );
+
+      state.totalQuantity += 1;
+      state.changed = true;
 
       if (itemInCart) {
         const indexOfItem = state.items.indexOf(itemInCart);
@@ -35,6 +42,9 @@ const cartSlice = createSlice({
       const itemInCart = state.items.find(
         (item) => item.title === action.payload.title
       );
+
+      state.totalQuantity -= 1;
+      state.changed = true;
 
       if (itemInCart) {
         const indexOfItem = state.items.indexOf(itemInCart);
