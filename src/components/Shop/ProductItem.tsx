@@ -10,7 +10,6 @@ const ProductItem = ({ title, price, description }: IItem) => {
   const dispatch = useDispatch();
 
   const addToCartHandler = () =>
-    // @ts-ignore
     dispatch(cartActions.addToCart({ title, price, description }));
 
   return (

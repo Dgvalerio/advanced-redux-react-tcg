@@ -1,10 +1,17 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import { ICartItem } from '../../interfaces';
+import { cartActions } from '../../store/cart';
 import classes from './CartItem.module.css';
 
 const CartItem = ({ item }: { item: ICartItem }) => {
+  const dispatch = useDispatch();
   const { title, quantity, total, price } = item;
+
+  const addOneHandler = () => dispatch(cartActions.addToCart(item));
+
+  const removeOneHandler = () => dispatch(cartActions.removeFromCart(item));
 
   return (
     <li className={classes.item}>
@@ -20,8 +27,12 @@ const CartItem = ({ item }: { item: ICartItem }) => {
           x <span>{quantity}</span>
         </div>
         <div className={classes.actions}>
-          <button type="button">-</button>
-          <button type="button">+</button>
+          <button type="button" onClick={removeOneHandler}>
+            -
+          </button>
+          <button type="button" onClick={addOneHandler}>
+            +
+          </button>
         </div>
       </div>
     </li>

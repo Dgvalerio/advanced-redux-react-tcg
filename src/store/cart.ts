@@ -30,6 +30,22 @@ const cartSlice = createSlice({
         });
       }
     },
+    removeFromCart(state: ICartState, action: PayloadAction<IItem>) {
+      const itemInCart = state.items.find(
+        (item) => item.title === action.payload.title
+      );
+
+      if (itemInCart) {
+        const indexOfItem = state.items.indexOf(itemInCart);
+
+        if (itemInCart.quantity > 1) {
+          state.items[indexOfItem].quantity -= 1;
+          state.items[indexOfItem].total -= itemInCart.price;
+        } else {
+          state.items.splice(indexOfItem, 1);
+        }
+      }
+    },
   },
 });
 
