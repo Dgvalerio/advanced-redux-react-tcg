@@ -6,7 +6,7 @@ import Layout from './components/Layout/Layout';
 import Products from './components/Shop/Products';
 import Notification from './components/UI/Notification';
 import { IStore } from './store';
-import { sendCartData } from './store/cart';
+import { fetchCartData, sendCartData } from './store/cart-actions';
 
 let isInitial = true;
 
@@ -15,6 +15,10 @@ const App = () => {
   const { cartVisible: showCart } = useSelector((state: IStore) => state.ui);
   const { cart } = useSelector((state: IStore) => state);
   const { notification } = useSelector((state: IStore) => state.ui);
+
+  useEffect(() => {
+    dispatch(fetchCartData());
+  }, [dispatch]);
 
   useEffect(() => {
     if (isInitial) {
